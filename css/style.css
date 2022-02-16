@@ -1,0 +1,212 @@
+* {
+    margin: 0;
+    padding: 0;
+    width: 960px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    background: linear-gradient(to bottom, #336988, #ccc);
+    height: 100vh;
+    overflow: hidden;
+}
+
+header {
+    text-align: center;
+    margin: 50px 0;
+}
+
+a {
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+li {
+    text-align: center;
+}
+
+input[type='submit'] {
+    border: 1px solid #ccc;
+    background-color: #b0cedf;
+    /* padding: 2px; */
+    color: #000;
+}
+
+.listagem li:first-of-type {
+    text-align: left;
+}
+
+.listagem li a {
+    border: 1px solid #ccc;
+    background-color: #b0cedf;
+    padding: 2px;
+    color: #000;
+}
+
+#menu_principal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin: 30px 0;
+}
+
+#menu_principal ul {
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+    align-items: center;
+    margin-top: 50px;
+    width: 480px;
+    text-align: center;
+}
+
+#menu_principal ul li {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+    width: 320px;
+    height: 40px;
+    border: 1px solid #ccc;
+}
+
+#menu_principal ul li a {
+    text-decoration: none;
+    color: #000;
+    box-sizing: border-box;
+    background-color: #b0cedf;
+    height: 40px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+#formulario {
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+}
+
+#formulario form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#formulario label {
+    align-self: flex-start;
+    font-size: 12px;
+    display: flex;
+    width: 640px;
+    margin-top: 15px;
+    color: #b0cedf;
+}
+
+#formulario input,
+textarea,
+select {
+    margin: 5px 0;
+    width: 640px;
+    height: 40px;
+    border: 1px solid #ccc;
+    padding: 5px;
+}
+
+#formulario form textarea {
+    height: 120px;
+}
+
+#formulario form .radio {
+    width: 640px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 40px;
+}
+#formulario form .radio label {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 40px;
+    margin-top: 0;
+}
+
+#formulario form .radio input {
+    height: 20px;
+    align-items: center;
+}
+#formulario form .radio label {
+    height: 40px;
+    display: flex;
+    align-items: center;
+}
+
+#formulario form .btn {
+    display: flex;
+    align-items: center;
+    width: 640px;
+    height: 40px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+    background-color: #b0cedf;
+}
+
+#formulario form .btn a {
+    color: #000;
+}
+
+.opcoes {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: row;
+    width: 640px;
+    justify-content: space-between;
+}
+
+.opcoes .btn {
+    display: flex;
+    align-items: center;
+    width: 640px;
+    height: 40px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+    background-color: #b0cedf;
+    text-align: center;
+}
+
+.opcoes .btn a {
+    color: #000;
+}
+.opcoes .btn_small {
+    display: flex;
+    align-items: center;
+    width: 300px;
+    height: 40px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+    background-color: #b0cedf;
+    text-align: center;
+}
+
+.opcoes .btn_small a {
+    color: #000;
+}
+
+.selecao {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    height: 40px;
+}
+
+.selecao form {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0 10px;
+}
