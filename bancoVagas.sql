@@ -79,3 +79,4 @@ CREATE TABLE tb_user (
     permissoes CHAR(1)
 );
 
+INSERT INTO tb_user VALUES (null, 'jean', MD5('aczf0704'), 'Jean Marcel', null);
