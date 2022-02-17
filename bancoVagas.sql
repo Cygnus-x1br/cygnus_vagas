@@ -80,3 +80,7 @@ CREATE TABLE tb_user (
 );
 
 INSERT INTO tb_user VALUES (null, 'jean', MD5('aczf0704'), 'Jean Marcel', null);
+
+ALTER TABLE tb_vaga ADD COLUMN destaque char(1) ;
+
+UPDATE tb_vaga SET destaque = 'S' WHERE IDVAGA=33;
