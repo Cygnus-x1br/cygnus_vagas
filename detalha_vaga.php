@@ -37,6 +37,7 @@ if (isset($_GET['vaga'])) {
     $descricao = $detalha_vaga['descricao'];
     $cliente = $detalha_vaga['ID_CLIENTE'];
     $IDVAGA = $detalha_vaga['IDVAGA'];
+    $destaque = $detalha_vaga['destaque'];
 
     $fechamento = $detalha_vaga['fechamento'];
 }
@@ -69,14 +70,22 @@ if (isset($_POST['funcao'])) {
     } else {
         die('Selecione ou cadastre o Cliente');
     }
+    if ($_POST['destaque'] == 'S') {
+        $destaque = 'S';
+    } else {
+        $destaque = '';
+    };
+
     if (!empty($_POST['fechamento'])) {
         $fechamento = $_POST['fechamento'];
     } else {
         die('Selecione o status da vaga');
     }
 
+
+
     $altera_vaga = "UPDATE tb_vaga ";
-    $altera_vaga .= " SET funcao='$funcao', tipo='$tipo', localTrab='$local', escolaridade='$escolaridade', horario='$horario', beneficios='$beneficios', descricao='$descricao', ID_CLIENTE=$cliente, fechamento='$fechamento', dataAlteracao=now() ";
+    $altera_vaga .= " SET funcao='$funcao', tipo='$tipo', localTrab='$local', escolaridade='$escolaridade', horario='$horario', beneficios='$beneficios', descricao='$descricao', ID_CLIENTE=$cliente, fechamento='$fechamento', dataAlteracao=now(), destaque='$destaque' ";
     $altera_vaga .= " WHERE IDVAGA = $codigo_vaga";
     $query_send = mysqli_query($conect, $altera_vaga);
     header("location:listagem_vaga.php");
@@ -148,6 +157,17 @@ if (isset($_POST['funcao'])) {
                 </select>
                 <div class="btn">
                     <a href="./cadastro_cliente.php">Cadastro Cliente</a>
+                </div>
+                <div class="check">
+                    <?php
+                    if ($destaque == 'S') {
+                        $check = 'checked';
+                    } else {
+                        $check = '';
+                    }
+                    ?>
+                    <label for="destaque">Vaga em destaque</label>
+                    <input type="checkbox" name="destaque" id="destaque" value="S" <?php echo $check; ?> <?php echo $edit ?>>
                 </div>
                 <div class="radio">
                     <?php

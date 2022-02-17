@@ -138,10 +138,27 @@ select {
     height: 20px;
     align-items: center;
 }
-#formulario form .radio label {
+
+#formulario form .check {
+    display:flex;
+    width: 640px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    
+}
+
+#formulario form .check input{
+    height: 20px;
+    align-items: center;
+}
+
+#formulario form .check label {
     height: 40px;
     display: flex;
     align-items: center;
+    font-size: 15px;
+    margin-top: 0;
 }
 
 #formulario form .btn {

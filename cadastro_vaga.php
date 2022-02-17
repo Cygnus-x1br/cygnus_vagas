@@ -44,9 +44,14 @@ if (isset($_POST['funcao'])) {
     } else {
         die('Selecione ou cadastre o Cliente');
     }
+    if ($_POST['destaque'] == 'S') {
+        $destaque = 'S';
+    } else {
+        $destaque = '';
+    };
 
     $insere_vaga = "INSERT INTO tb_vaga ";
-    $insere_vaga .= "VALUES(null, '$funcao', '$tipo', '$local', '$escolaridade', '$horario', '$beneficios', '$descricao', $cliente, now(),'A', null)";
+    $insere_vaga .= "VALUES(null, '$funcao', '$tipo', '$local', '$escolaridade', '$horario', '$beneficios', '$descricao', $cliente, now(),'A', null, '$destaque')";
     $query_send = mysqli_query($conect, $insere_vaga);
     header("location:listagem_vaga.php");
 }
@@ -101,6 +106,11 @@ if (isset($_POST['funcao'])) {
                     }
                     ?>
                 </select>
+                <div class="check">
+
+                    <label for="destaque">Vaga em destaque</label>
+                    <input type="checkbox" name="destaque" id="destaque" value="S">
+                </div>
                 <div class="btn">
                     <a href="./cadastro_cliente.php">Cadastro Cliente</a>
                 </div>
