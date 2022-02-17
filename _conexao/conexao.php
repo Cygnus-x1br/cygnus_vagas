@@ -1,8 +1,8 @@
 <?php
 
 $servidor = 'localhost';
-$usuario = 'root';
-$senha = '';
+$usuario = 'jean';
+$senha = '@Czf0704';
 $banco = 'vagas';
 $conect = mysqli_connect($servidor, $usuario, $senha, $banco);
 

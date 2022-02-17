@@ -1,7 +1,8 @@
 <?php
 session_start();
 
-require_once('../../_conexoes/cygnus_php_conexao.php');
+require_once('.._conexao/conexao.php');
+
 
 
 
