@@ -2,7 +2,7 @@
 
 session_start();
 
-require_once('.._conexao/conexao.php');
+require_once('./_conexao/conexao.php');
 
 if (isset($_POST['usuario'])) {
     $usuario = $_POST["usuario"];
