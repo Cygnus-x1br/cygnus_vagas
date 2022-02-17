@@ -1,6 +1,3 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-
 <?php
 session_start();
 
@@ -10,6 +7,8 @@ if (!isset($_SESSION["cygnus_login"])) {
 };
 
 ?>
+<!DOCTYPE html>
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">

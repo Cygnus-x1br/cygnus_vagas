@@ -1,9 +1,7 @@
 <?php
-require_once('../../_conexoes/cygnus_php_conexao.php');
-
-?>
-<?php
 session_start();
+
+require_once('../../_conexoes/cygnus_php_conexao.php');
 
 if (!isset($_SESSION["cygnus_login"])) {
     header("location:login.php");
