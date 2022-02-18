@@ -10,7 +10,7 @@ if (!isset($_SESSION["cygnus_login"])) {
     header("location:login.php");
     die;
 };
-
+$user = $_SESSION["cygnus_login"];
 ?>
 
 <?php
@@ -33,6 +33,7 @@ if (isset($_GET['vaga'])) {
     $local = $detalha_vaga['localTrab'];
     $escolaridade = $detalha_vaga['escolaridade'];
     $horario = $detalha_vaga['horario'];
+    $salario = $detalha_vaga['salario'];
     $beneficios = $detalha_vaga['beneficios'];
     $descricao = $detalha_vaga['descricao'];
     $cliente = $detalha_vaga['ID_CLIENTE'];
@@ -63,6 +64,7 @@ if (isset($_POST['funcao'])) {
     }
     $escolaridade = $_POST['escolaridade'];
     $horario = $_POST['horario'];
+    $salario = $_POST['salario'];
     $beneficios = $_POST['beneficios'];
     $descricao = $_POST['descricao'];
     if (!empty($_POST['cliente'])) {
@@ -70,10 +72,11 @@ if (isset($_POST['funcao'])) {
     } else {
         die('Selecione ou cadastre o Cliente');
     }
-    if ($_POST['destaque'] == 'S') {
-        $destaque = 'S';
-    } else {
+
+    if (empty($_POST['destaque'])) {
         $destaque = '';
+    } elseif ($_POST['destaque'] == 'S') {
+        $destaque = 'S';
     };
 
     if (!empty($_POST['fechamento'])) {
@@ -85,8 +88,9 @@ if (isset($_POST['funcao'])) {
 
 
     $altera_vaga = "UPDATE tb_vaga ";
-    $altera_vaga .= " SET funcao='$funcao', tipo='$tipo', localTrab='$local', escolaridade='$escolaridade', horario='$horario', beneficios='$beneficios', descricao='$descricao', ID_CLIENTE=$cliente, fechamento='$fechamento', dataAlteracao=now(), destaque='$destaque' ";
+    $altera_vaga .= " SET funcao='$funcao', tipo='$tipo', localTrab='$local', escolaridade='$escolaridade', horario='$horario', beneficios='$beneficios', descricao='$descricao', ID_CLIENTE=$cliente, fechamento='$fechamento', dataFechamento=now(), destaque='$destaque', ID_USUARIO=$user , salario=$salario ";
     $altera_vaga .= " WHERE IDVAGA = $codigo_vaga";
+    //print_r($altera_vaga);
     $query_send = mysqli_query($conect, $altera_vaga);
     header("location:listagem_vaga.php");
 }
@@ -142,6 +146,7 @@ if (isset($_POST['funcao'])) {
                 <input type="text" name="local_trab" placeholder="Local de Trabalho" value="<?php echo $local ?>" <?php echo $edit ?>>
                 <input type="text" name="escolaridade" placeholder="Escolaridade" value="<?php echo $escolaridade ?>" <?php echo $edit ?>>
                 <input type="text" name="horario" placeholder="Horário de trabalho" value="<?php echo $horario ?>" <?php echo $edit ?>>
+                <input type="text" name="salario" placeholder="Salário" value="<?php echo $salario ?>" <?php echo $edit ?>>
                 <input type="text" name="beneficios" placeholder="Beneficios" value="<?php echo $beneficios ?>" <?php echo $edit ?>>
                 <textarea name="descricao" placeholder="Descrição atividades" id="" <?php echo $edit ?>><?php echo $descricao ?></textarea>
                 <select name="cliente" id="" <?php echo $edit ?>>
@@ -200,7 +205,7 @@ if (isset($_POST['funcao'])) {
                     ?>
                 </div>
                 <input type="text" name='id_vaga' value='<?php echo $IDVAGA ?>' hidden>
-                <input type="submit" value="Alterar vaga">
+                <input type="submit" value="Alterar vaga" <?php echo $edit ?>>
             </form>
 
         </div>

@@ -84,3 +84,11 @@ INSERT INTO tb_user VALUES (null, 'jean', MD5('aczf0704'), 'Jean Marcel', null);
 ALTER TABLE tb_vaga ADD COLUMN destaque char(1) ;
 
 UPDATE tb_vaga SET destaque = 'S' WHERE IDVAGA=33;
+
+ALTER TABLE tb_vaga ADD COLUMN salario FLOAT(10,2) ;
+ALTER TABLE tb_vaga ADD COLUMN ID_USUARIO INT ;
+
+ALTER TABLE tb_vaga ADD CONSTRAINT FK_USUARIO
+FOREIGN KEY(ID_USUARIO) REFERENCES tb_user(IDUSUARIO);
+
+UPDATE tb_vaga SET funcao='Contato Comercial', tipo='T', localTrab='Santo André', escolaridade='Ensino Médio Completo', horario='Seg. a Sex. 07:30 as 17:00', beneficios='Vale-Trasnporte, Vale-Refeição e Vale-Alimentação', descricao='Experiência em vendas na área de serviços, atendimento a clientes, Habilitação Cat B. Desejável conhecimentos na área de Recursos Humanos', ID_CLIENTE=1, fechamento='A', dataAlteracao=now(), destaque='', ID_USUARIO=1 , salario=15000.00 WHERE IDVAGA = 1;

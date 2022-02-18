@@ -8,7 +8,7 @@ if (!isset($_SESSION["cygnus_login"])) {
     header("location:login.php");
     die;
 };
-
+$user = $_SESSION["cygnus_login"];
 ?>
 
 <?php
@@ -20,6 +20,7 @@ if (!$query_send_cli) {
 }
 
 if (isset($_POST['funcao'])) {
+    $user = $_SESSION["cygnus_login"];
     if (!empty($_POST['funcao'])) {
         $funcao = $_POST['funcao'];
     } else {
@@ -37,6 +38,7 @@ if (isset($_POST['funcao'])) {
     }
     $escolaridade = $_POST['escolaridade'];
     $horario = $_POST['horario'];
+    $salario = $_POST['salario'];
     $beneficios = $_POST['beneficios'];
     $descricao = $_POST['descricao'];
     if (!empty($_POST['cliente'])) {
@@ -51,7 +53,7 @@ if (isset($_POST['funcao'])) {
     };
 
     $insere_vaga = "INSERT INTO tb_vaga ";
-    $insere_vaga .= "VALUES(null, '$funcao', '$tipo', '$local', '$escolaridade', '$horario', '$beneficios', '$descricao', $cliente, now(),'A', null, '$destaque')";
+    $insere_vaga .= "VALUES(null, '$funcao', '$tipo', '$local', '$escolaridade', '$horario', '$beneficios', '$descricao', $cliente, now(),'A', null, '$destaque', $salario, $user)";
     $query_send = mysqli_query($conect, $insere_vaga);
     header("location:listagem_vaga.php");
 }
@@ -95,6 +97,7 @@ if (isset($_POST['funcao'])) {
                 <input type="text" name="local_trab" placeholder="Local de Trabalho">
                 <input type="text" name="escolaridade" placeholder="Escolaridade">
                 <input type="text" name="horario" placeholder="Horário de trabalho">
+                <input type="text" name="salario" placeholder="Salário">
                 <input type="text" name="beneficios" placeholder="Beneficios">
                 <textarea name="descricao" placeholder="Descrição atividades" id=""></textarea>
                 <select name="cliente" id="">
