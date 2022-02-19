@@ -52,6 +52,32 @@ FOREIGN KEY(ID_CANDIDATO) REFERENCES tb_candidato(IDCANDIDATO);
 ALTER TABLE cand_vaga ADD CONSTRAINT FK_VAGA
 FOREIGN KEY(ID_VAGA) REFERENCES tb_vaga(IDVAGA);
 
+
+CREATE TABLE tb_user (
+    IDUSUARIO INT PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(20) NOT NULL,
+    passwd VARCHAR(100) NOT NULL UNIQUE,
+    nome_usuario VARCHAR(100) NOT NULL,
+    permissoes CHAR(1)
+);
+
+
+ALTER TABLE tb_vaga ADD COLUMN destaque char(1) ;
+
+ALTER TABLE tb_vaga CHANGE dataFechamento dataAlteracao DATETIME;
+
+
+ALTER TABLE tb_vaga ADD COLUMN salario FLOAT(10,2) ;
+ALTER TABLE tb_vaga ADD COLUMN ID_USUARIO INT ;
+
+ALTER TABLE tb_vaga ADD CONSTRAINT FK_USUARIO
+FOREIGN KEY(ID_USUARIO) REFERENCES tb_user(IDUSUARIO);
+
+
+/*QUERYS DE TESTE */
+
+UPDATE tb_vaga SET funcao='Contato Comercial', tipo='T', localTrab='Santo André', escolaridade='Ensino Médio Completo', horario='Seg. a Sex. 07:30 as 17:00', beneficios='Vale-Trasnporte, Vale-Refeição e Vale-Alimentação', descricao='Experiência em vendas na área de serviços, atendimento a clientes, Habilitação Cat B. Desejável conhecimentos na área de Recursos Humanos', ID_CLIENTE=1, fechamento='A', dataAlteracao=now(), destaque='', ID_USUARIO=1 , salario=15000.00 WHERE IDVAGA = 1;
+
 INSERT INTO tb_cliente VALUES(null,"Andromeda Terceirização de Mão de Obra e Servicos Ltda","Rua Marcelino Dantas, 117","Vila Alzira","Santo Andre","SP","17237955000160","Jean","jeanmarcel@cygnusrh.com.br","1144383622");
 
 INSERT INTO tb_vaga VALUES(null, 'Contato Comercial', 'T', 'Santo André', 'Ensino Médio Completo', 'Seg. a Sex. 07:30 as 17:00', 'Vale-Trasnporte, Vale-Refeição e Vale-Alimentação', 'Experiência em vendas na área de serviços, atendimento a clientes, Habilitação Cat B. Desejável conhecimentos na área de Recursos Humanos', 1, now(),'A', null);
@@ -71,24 +97,8 @@ ON v.ID_CLIENTE = c.IDCLIENTE
 WHERE v.fechamento LIKE '%%' 
 GROUP BY(c.IDCLIENTE);
 
-CREATE TABLE tb_user (
-    IDUSUARIO INT PRIMARY KEY AUTO_INCREMENT,
-    username VARCHAR(20) NOT NULL,
-    passwd VARCHAR(100) NOT NULL UNIQUE,
-    nome_usuario VARCHAR(100) NOT NULL,
-    permissoes CHAR(1)
-);
-
-INSERT INTO tb_user VALUES (null, 'jean', MD5('aczf0704'), 'Jean Marcel', null);
-
-ALTER TABLE tb_vaga ADD COLUMN destaque char(1) ;
-
 UPDATE tb_vaga SET destaque = 'S' WHERE IDVAGA=33;
 
-ALTER TABLE tb_vaga ADD COLUMN salario FLOAT(10,2) ;
-ALTER TABLE tb_vaga ADD COLUMN ID_USUARIO INT ;
+/* ADD USERS */
 
-ALTER TABLE tb_vaga ADD CONSTRAINT FK_USUARIO
-FOREIGN KEY(ID_USUARIO) REFERENCES tb_user(IDUSUARIO);
-
-UPDATE tb_vaga SET funcao='Contato Comercial', tipo='T', localTrab='Santo André', escolaridade='Ensino Médio Completo', horario='Seg. a Sex. 07:30 as 17:00', beneficios='Vale-Trasnporte, Vale-Refeição e Vale-Alimentação', descricao='Experiência em vendas na área de serviços, atendimento a clientes, Habilitação Cat B. Desejável conhecimentos na área de Recursos Humanos', ID_CLIENTE=1, fechamento='A', dataAlteracao=now(), destaque='', ID_USUARIO=1 , salario=15000.00 WHERE IDVAGA = 1;
+INSERT INTO tb_user VALUES (null, 'jean', MD5('aczf0704'), 'Jean Marcel', null);
